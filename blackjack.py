@@ -200,6 +200,30 @@ def displayCards(cards):
         print(row)
 
 
+def getMove(playerHand, money):
+    """Zapytaj gracza o ruch i zwróć 'D' w przypadku dobierania, 'S'
+    gdy gracz nie chce już dobierać kart, i 'P' dla podowjenia zakładu."""
+    # Wykonuj pętle, dopuki gracz nie poda odpowiedniego ruchu.
+    while True:
+        # Określ jakie ruchy gracz może wykonać.
+        moves = ["(D)obierz", "(S)top"]
 
+        # Gracz może podwoić zakład przy pierwszym ruchu, co można stwierdzić po tym że ma dwie karty.
+        if len(playerHand) == 2 and money > 0:
+            moves.append("(P)odwój")
+        
+        # Odczytaj ruch gracza.
+        movePrompt = ", ".join(moves) + "> "
+        move = input(movePrompt).upper()
+        if move in ("D", "S"):
+            # Gracz podał poprawny ruch.
+            return move
+        if move == "P" and "(P)odwój" in moves:
+            # Gracz podał poprawny ruch.
+            return move
+        
+
+if __name__ == '__main__':
+    main()
 
     
