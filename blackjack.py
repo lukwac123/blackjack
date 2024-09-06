@@ -113,4 +113,18 @@ def main():
 
         input("Naciśnij Enter, by kontynuować...")
         print("\n\n")
+
+
+def getBet(maxBet):
+    """Definicja funkcji getBet(), zapytanie gracza ile chce w tej rundzie postawić."""
+    deck = []
+    for suit in [HEARTS, DIAMONDS, SPADES, CLUBS]:
+        for rank in range(2, 11):
+            # Dodanie kart numerowanych.
+            deck.append((str(rank), suit))
+        for rank in ("J", "Q", "K", "A"):
+            # Dodanie figur i asa.
+            deck.append((rank, suit))
+    random.shuffle(deck)
+    return deck
     
