@@ -127,4 +127,20 @@ def getBet(maxBet):
             deck.append((rank, suit))
     random.shuffle(deck)
     return deck
+
+
+def displayHands(playerHand, dealerHand, showDealerHand):
+    """Pokazanie kart gracza i krupiera. Najpierw ukryj karty krupiera, jeśli zmienna showDealerHand jest równa False."""
+    print()
+    if showDealerHand:
+        print("KRUPIER: ", getHandValue(dealerHand))
+        displayCards(dealerHand)
+    else:
+        print("KRUPIER: ???")
+        # Najpier ukryj karty krupiera.
+        displayCards([BACKSIDE] + dealerHand[1:])
+
+    # Pokaż karty gracza.
+    print("GRACZ: ", getHandValue(playerHand))
+    displayCards(playerHand)
     
