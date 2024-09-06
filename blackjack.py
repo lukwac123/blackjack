@@ -143,4 +143,32 @@ def displayHands(playerHand, dealerHand, showDealerHand):
     # Pokaż karty gracza.
     print("GRACZ: ", getHandValue(playerHand))
     displayCards(playerHand)
+
+
+def getHandValue(cards):
+    """Zwraca wartość kart. Figury są warte 10, asy 11 lub 1 (ta funkcja wybiera najodpowiedniejszą wartość asa)."""
+    value = 0
+    numberOfAces = 0
+
+    # Zsumowanie wartości kart, poza asami.
+    for card in cards:
+        # Karta to krotka (figura, kolor).
+        rank = card[0]
+        if rank == "A":
+            numberOfAces += 1
+        # Figury mają 10 punktów.
+        elif rank in ("K", "Q", "J"):
+            value += 10
+        else:
+            # Karty numerowane mają liczbę punktów zgodną z ich numerem.
+            value += int(rank)
+
+    # Dodawanie wartości asów.
+    # Dodanie 1.
+    value += numberOfAces
+    for i in range(numberOfAces):
+        # Jeśli może być dodane pozostałe 10 punktów bez przekroczenia 21, to tak zrób.
+        if value + 10 <= 21:
+            value += 10
+            
     
