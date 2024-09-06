@@ -170,5 +170,36 @@ def getHandValue(cards):
         # Jeśli może być dodane pozostałe 10 punktów bez przekroczenia 21, to tak zrób.
         if value + 10 <= 21:
             value += 10
-            
+    
+    return value
+
+
+def displayCards(cards):
+    """Wyświetlanie wszystkich kart z listy."""
+    # Tekst do wyświetlania w każdym wierszu.
+    rows = ["", "", "", "", ""]
+
+    for i, card in enumerate(cards):
+        # Wyświetlanie górnej krawędzi karty.
+        rows[0] += " __  "
+        if card == BACKSIDE:
+            # Wyświetlanie tyłu karty.
+            rows[1] += "|## |"
+            rows[2] += "|###|"
+            rows[3] += "|_##|"
+        else:
+            # Wyświetlanie przodu karty.
+            # Karta krotka
+            rank, suit = card
+            rows[1] += "|{} |".format(rank.ljust(2))
+            rows[2] += "| {} |".format(suit)
+            rows[3] += "|_{}|".format(rank.rjust(2, "_"))
+
+    # Wyświetlanie każdego wiersza na ekranie.
+    for row in rows:
+        print(row)
+
+
+
+
     
