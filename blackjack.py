@@ -116,6 +116,26 @@ def main():
 
 
 def getBet(maxBet):
+    """Zapytaj gracza, ile chce w tej rundzie postawić."""
+    # Pytaj, dopuki nie poda odpowiedniej kwoty.
+    while True:
+        print("Ile chcesz postawić? (1 - {} lub KONIEC)".format(maxBet))
+        bet = input("> ").upper().strip()
+        if bet == "KONIEC":
+            print("Dziękuję za grę!")
+            sys.exit()
+
+        if not bet.isdecimal():
+            # Jeśli gracz nie podał liczby, zapytaj jeszcze raz.
+            continue
+
+        bet = int(bet)
+        if 1 <= bet <= maxBet:
+            # Gracz podał odpowiednią liczbę.
+            return bet
+
+
+def getDeck():
     """Definicja funkcji getBet(), zapytanie gracza ile chce w tej rundzie postawić."""
     deck = []
     for suit in [HEARTS, DIAMONDS, SPADES, CLUBS]:
